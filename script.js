@@ -29,12 +29,14 @@ let sling = Matter.Constraint.create({
     pointA: {x: 300, y: 600},
     bodyB: ball,
     stiffness: 0.05
-})
+});
 
 let stack = Matter.Composites.stack(1100, 270, 6, 6, 0, 0, function(x,y) {
     // let sides =  Math.round(Matter.Common.random(2,8));
     return Matter.Bodies.polygon(x, y, 8, 30);
 });
+
+let firing = false;
 
 Matter.World.add(engine.world, [stack, ground, ball, sling, mouseConstraint]);
 Matter.Engine.run(engine);
