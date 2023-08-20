@@ -37,6 +37,7 @@ let stack = Matter.Composites.stack(1100, 270, 6, 6, 0, 0, function(x,y) {
 });
 
 let firing = false;
+Matter.Events.on()
 
 Matter.World.add(engine.world, [stack, ground, ball, sling, mouseConstraint]);
 Matter.Engine.run(engine);
