@@ -25,7 +25,7 @@ let mouseConstraint  = Matter.MouseConstraint.create(engine, {
 render.mouse = mouse;
 
 let ball = Matter.Bodies.circle(300,600,20);
-let sling =
+let sling = Matter.Constraint
 
 let stack = Matter.Composites.stack(1100, 270, 6, 6, 0, 0, function(x,y) {
     // let sides =  Math.round(Matter.Common.random(2,8));
