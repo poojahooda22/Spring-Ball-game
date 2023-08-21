@@ -11,7 +11,7 @@ let render = Matter.Render.create({
     }
 });
 
-let ground = Matter.Bodies.rectangle(1200,600,400,100, {isStatic: true});
+let ground = Matter.Bodies.rectangle(1200,600,600,40, {isStatic: true});
 
 
 let mouse = Matter.Mouse.create(render.canvas);
@@ -37,9 +37,20 @@ let stack = Matter.Composites.stack(1100, 270, 6, 6, 0, 0, function(x,y) {
 });
 
 let firing = false;
-Matter.Events.on()
+Matter.Events.on(mouseConstraint, 'enddrag', function(e) {
+    if(e.body === ball) firing = true;
+});
 
-Matter.World.add(engine.world, [stack, ground, ball, sling, mouseConstraint]);
+Matter.Events.on(engine, 'afterupdate', function() {
+    if(firing && Math.abs(ball.position.x-300)< 20 && Math.abs(ball.position.y-600) < 20) {
+        ball = Matter.Bodies.circle(300, 600, 20);
+        Matter.World.add(engine.world, ball);
+        sling.bodyB = ball;
+        firing = false;
+    }
+});
+
+Matter.World.add(engine.world, [stack, ground, ball, sling, firing, mouseConstraint]);
 Matter.Engine.run(engine);
 Matter.Render.run(render);
 
