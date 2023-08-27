@@ -5,13 +5,13 @@ let render = Matter.Render.create({
     element: document.body,
     engine: engine,
     options: {
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: 1600,
+        height: 1600,
         wireframes: false
     }
 });
 
-let ground = Matter.Bodies.rectangle(1200,600,600,40, {isStatic: true});
+let ground = Matter.Bodies.rectangle(1200,600,700,40, {isStatic: true});
 
 
 let mouse = Matter.Mouse.create(render.canvas);
